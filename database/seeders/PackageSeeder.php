@@ -17,18 +17,18 @@ class PackageSeeder extends Seeder
 
         $packages = [
             [
-                'name' => 'Paket Wisuda Silver',
-                'description' => 'Sesi foto wisuda di studio untuk 1 orang, termasuk cetak foto dan semua file digital.',
-                'image' => 'package-images/wisuda.jpg', 
-                'price' => 850000,
-                'duration_in_hours' => 1,
-            ],
-            [
                 'name' => 'Paket Pernikahan Gold (Akad & Resepsi)',
                 'description' => 'Liputan lengkap hari pernikahan, dari akad nikah hingga resepsi. Termasuk album kolase eksklusif dan video sinematik.',
                 'image' => 'package-images/pernikahan.jpg',
                 'price' => 8500000,
                 'duration_in_hours' => 8,
+            ],
+            [
+                'name' => 'Paket Wisuda Silver',
+                'description' => 'Sesi foto wisuda di studio untuk 1 orang, termasuk cetak foto dan semua file digital.',
+                'image' => 'package-images/wisuda.jpg', 
+                'price' => 850000,
+                'duration_in_hours' => 1,
             ],
             [
                 'name' => 'Paket Foto Keluarga Harmonis',

@@ -27,7 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->brandName('Studio Fotografi')
+            ->brandName('GF Studio')
             ->colors([
                 'primary' => Color::Amber,
             ])

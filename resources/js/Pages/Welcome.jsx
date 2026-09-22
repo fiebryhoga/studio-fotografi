@@ -1,8 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Head } from "@inertiajs/react";
-
-import AOS from 'aos'; // <-- Import AOS
-
 
 import HeroSection from "@/Components/Public/HeroSection";
 import AboutSection from "@/Components/Public/AboutSection";
@@ -18,19 +15,9 @@ export default function Welcome({
     // canLogin,
     // canRegister,
 }) {
-
-    useEffect(() => {
-        AOS.init({
-            duration: 2000,
-            once: false,
-            offset: 200,
-        });
-    }, []);
-
-
     return (
         <>
-            <Head title="Studio Fotografi Profesional" />
+            <Head title="GF Studio - Studio Fotografi Profesional" />
             <Navbar />
             <main className="bg-white">
                 <HeroSection />

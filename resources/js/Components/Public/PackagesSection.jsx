@@ -1,7 +1,8 @@
-import { Clock } from "lucide-react";
+import React from "react";
+import { Clock, CheckCircle2, ArrowRight, Sparkles } from "lucide-react";
+import { Link } from "react-scroll";
 
 export default function PackagesSection({ packages }) {
-    
     const formatCurrency = (price) => {
         return new Intl.NumberFormat("id-ID", {
             style: "currency",
@@ -11,78 +12,93 @@ export default function PackagesSection({ packages }) {
     };
 
     return (
-        <section id="packages" className="py-24 bg-white">
-            <div className="container mx-auto px-6">
-                <div className="text-center mb-16">
-                    <h3
-                        className="text-lg font-bold text-pastel-primary"
-                        data-aos="fade-up"
-                        data-aos-delay="100"
-                    >
-                        Pilihan Terbaik Untuk Anda
-                    </h3>
-                    <h2
-                        className="text-4xl font-bold text-pastel-dark mt-2"
-                        data-aos="fade-up"
-                        data-aos-delay="200"
-                    >
-                        Layanan & Paket Fotografi
+        <section id="packages" className="py-24 bg-zinc-50/70 border-y border-zinc-200/60">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+                {/* Header */}
+                <div className="text-center max-w-2xl mx-auto mb-16">
+                    <span className="text-xs font-bold uppercase tracking-[0.2em] text-zinc-500 mb-2 block">
+                        Pilihan Paket & Harga
+                    </span>
+                    <h2 className="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight">
+                        Paket Sesi Foto
                     </h2>
-                    <p
-                        className="text-gray-500 mt-4 max-w-2xl mx-auto"
-                        data-aos="fade-up"
-                        data-aos-delay="300"
-                    >
-                        Kami menyediakan berbagai pilihan paket yang dirancang
-                        untuk memenuhi setiap kebutuhan momen berharga Anda.
+                    <p className="text-zinc-600 mt-3 text-base">
+                        Pilihan paket dokumentasi lengkap dengan rincian durasi dan fasilitas yang transparan.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Packages Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {packages.map((pkg, index) => (
                         <div
                             key={pkg.id}
-                            className="bg-white rounded-lg shadow-lg text-center flex flex-col w-full h-auto hover:bg-pastel-primary transition-all duration-300 overflow-hidden group"
-                            data-aos="fade-up"
-                            data-aos-delay={index * 100}
+                            className="bg-white rounded-xl border border-zinc-200/80 shadow-sm hover:shadow-xl hover:border-zinc-300 transition-all duration-300 overflow-hidden flex flex-col group"
                         >
-                            <div className="w-full h-64 flex flex-row items-center justify-center">
+                            {/* Image Header with Badge */}
+                            <div className="relative aspect-[16/10] w-full overflow-hidden bg-zinc-100">
                                 <img
                                     src={`/storage/${pkg.image}`}
                                     alt={pkg.name}
-                                    className=" w-full h-full rounded-t-xl object-cover
-                                               group-hover:scale-105 transition-transform duration-300"
+                                    className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                                 />
-                            </div>
-                            {/* Gambar Paket */}
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
 
-                            <div className="w-full h-full justify-between flex flex-col items-center p-4 gap-8">
-                                <div className="flex flex-col items-start justify-start w-full gap-4">
-                                    <h4 className="text-xl font-bold group-hover:text-white text-pastel-dark text-left">
+                                {/* Duration Badge */}
+                                <div className="absolute top-3.5 right-3.5 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-zinc-950/80 backdrop-blur-md text-white text-xs font-semibold border border-white/10 shadow-sm">
+                                    <Clock size={13} className="text-amber-400" />
+                                    <span>{pkg.duration_in_hours} Jam Sesi</span>
+                                </div>
+                            </div>
+
+                            {/* Content Body */}
+                            <div className="p-6 sm:p-7 flex flex-col flex-grow justify-between">
+                                <div>
+                                    <h3 className="text-xl font-bold text-zinc-950 group-hover:text-amber-600 transition-colors">
                                         {pkg.name}
-                                    </h4>
-                                    <div className="w-full flex flex-row justify-between items-center">
-                                        <p className="text-base font-bold text-pastel-dark group-hover:text-white">
+                                    </h3>
+
+                                    {/* Price */}
+                                    <div className="mt-3 flex items-baseline gap-1">
+                                        <span className="text-2xl sm:text-3xl font-extrabold text-zinc-950">
                                             {formatCurrency(pkg.price)}
-                                        </p>
-                                        <p className=" flex flex-row text-sm font-semibold text-gray-500flex items-center gap-1 justify-center group-hover:text-white">
-                                            <Clock size={16} />
-                                            Durasi {pkg.duration_in_hours} Jam
-                                        </p>
+                                        </span>
+                                        <span className="text-xs text-zinc-500 font-medium">/ paket</span>
                                     </div>
 
-                                    <p className="text-sm text-gray-600 flex-grow w-full text-left group-hover:text-white line-clamp-3">
+                                    <p className="text-sm text-zinc-600 mt-3 leading-relaxed">
                                         {pkg.description}
                                     </p>
+
+                                    {/* Highlights list */}
+                                    <div className="mt-5 pt-5 border-t border-zinc-100 space-y-2.5">
+                                        <div className="flex items-center gap-2 text-xs font-medium text-zinc-700">
+                                            <CheckCircle2 size={15} className="text-emerald-600 flex-shrink-0" />
+                                            <span>Semua File Original Digital Full-HD</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-xs font-medium text-zinc-700">
+                                            <CheckCircle2 size={15} className="text-emerald-600 flex-shrink-0" />
+                                            <span>Master Edit Warna & Retouch Halus</span>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-xs font-medium text-zinc-700">
+                                            <CheckCircle2 size={15} className="text-emerald-600 flex-shrink-0" />
+                                            <span>Pengarah Gaya & Lighting Studio</span>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div className="w-full flex flex-row items-end justify-end h-auto">
-                                    <a
-                                        href="#booking"
-                                        className="text-base py-2 px-4 group-hover:text-pastel-primary rounded-md group-hover:bg-white bg-pastel-primary text-white font-semibold shadow-sm hover:bg-opacity-90 transition-colors"
+                                {/* Booking CTA button */}
+                                <div className="mt-7 pt-4">
+                                    <Link
+                                        to="booking"
+                                        spy={true}
+                                        smooth={true}
+                                        offset={-80}
+                                        duration={700}
+                                        className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-zinc-950 hover:bg-zinc-800 text-white py-3 px-4 text-sm font-bold shadow-sm transition-all duration-200 cursor-pointer group-hover:bg-amber-600"
                                     >
-                                        Pesan Sekarang
-                                    </a>
+                                        <span>Pesan Paket Ini</span>
+                                        <ArrowRight size={16} />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
